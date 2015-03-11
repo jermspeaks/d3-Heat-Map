@@ -1,0 +1,28 @@
+{
+  "name": "d3-Heat-Map",
+  "version": "1.0.0",
+  "description": "Heat Map using D3",
+  "main": "js/d3HeatMap.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jermspeaks/d3-Heat-Map.git"
+  },
+  "keywords": [
+    "charts",
+    "d3",
+    "heat",
+    "map"
+  ],
+  "author": "Jeremy Wong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jermspeaks/d3-Heat-Map/issues"
+  },
+  "homepage": "https://github.com/jermspeaks/d3-Heat-Map",
+  "devDependencies": {
+    "gulp": "^3.8.11"
+  }
+}
