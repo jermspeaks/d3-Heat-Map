@@ -51,6 +51,10 @@ textarea {
     padding: 0.2em 0;
 }
 
+.container {
+    width: 80%;
+    margin: 50px auto;
+}
 
 /* ==========================================================================
    Author's custom styles
