@@ -30,6 +30,7 @@ $(document).ready(function() {
     .data(dataset)
     .enter()
     .append('rect')
+    .classed('bar', true)
     .attr('x', function(d, i) {
       return xScale(i);
     })
@@ -41,7 +42,7 @@ $(document).ready(function() {
       return yScale(d);
     })
     .attr('fill', function(d) {
-      return 'rgb(0, 0, ' + (d * 10) + ')';
+      return 'rgb(0, ' + (d * 10) + ', 0)';
     });
 
   // Create Bar Labels
@@ -62,6 +63,50 @@ $(document).ready(function() {
     .attr("font-size", "11px")
     .attr("fill", "white")
     .attr("text-anchor", "middle");
+
+  // Bar Click Event Listener
+  d3.selectAll('.bar')
+    .on('contextmenu', function(d, i) {
+      event.preventDefault();
+      //New values for dataset
+      var numValues = dataset.length; //Count original length of dataset
+      dataset = []; //Initialize empty array
+      for (var i = 0; i < numValues; i++) { //Loop numValues times
+        var newNumber = Math.floor(Math.random() * 25); //New random integer (0-25)
+        dataset.push(newNumber); //Add new number to array
+      }
+
+      svg.selectAll('rect')
+        .data(dataset)
+        .transition()
+        .delay(function(d, i) {
+          return i / dataset.length * 1000;
+        })
+        .duration(200)
+        .ease('linear')
+        .attr('y', function(d) {
+          return h - yScale(d);
+        })
+        .attr('height', function(d) {
+          return yScale(d);
+        })
+        .attr('fill', function(d) {
+          return 'rgb(0, ' + (d * 10) + ', 0)';
+        });
+
+      svg.selectAll('text')
+        .data(dataset)
+        .text(function(d) {
+          return d;
+        })
+        .attr('x', function(d, i) {
+          return xScale(i) + xScale.rangeBand() / 2;
+        })
+        .attr('y', function(d) {
+          return h - yScale(d) + 14;
+        });
+    });
+
 
   // Data
   // var dataset = [];
