@@ -1,0 +1,26 @@
+{
+  "name": "d3-Heat-Map",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jermspeaks/d3-Heat-Map",
+  "authors": [
+    "Jeremy Wong <jermspeaks@gmail.com>"
+  ],
+  "description": "Heat Map using d3",
+  "main": "js/d3HeatMap.js",
+  "keywords": [
+    "d3",
+    "heat",
+    "map",
+    "visualization",
+    "bar",
+    "chart"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
