@@ -23,6 +23,9 @@
   },
   "homepage": "https://github.com/jermspeaks/d3-Heat-Map",
   "devDependencies": {
-    "gulp": "^3.8.11"
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-filter": "^2.0.2",
+    "main-bower-files": "^2.5.0"
   }
 }
