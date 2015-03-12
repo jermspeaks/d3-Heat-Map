@@ -2,6 +2,21 @@
 
 This is a chart using d3.js.
 
+Build Project:
+
+```shell
+# Install bower and gulp globally
+npm install -g bower
+bower install -g gulp
+
+# Install Dependencies
+npm install
+bower install
+
+# Build Project
+gulp build
+```
+
 To Run:
 
 ```shell
