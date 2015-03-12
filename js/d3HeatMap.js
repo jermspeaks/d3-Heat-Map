@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   // Attributes
-  var w = 900;
+  var w = $(window).width() - 200;
   var h = 200;
   var padding = 30;
   var viewPadding = 100;
@@ -10,7 +10,7 @@ $(document).ready(function() {
 
   // Data
   var dataset = [934, 6000, 12000, 48000, 64000];
-  var colors = ['#BA262B', '#D45033', '#F68E35', '#FFBE37', '#235074'];
+  var colors = ['186, 38, 43', '212,80,51', '246,142,53', '255,190,55', '35,80,116'];
   var categories = ['10+ Page Views', '5-9 Page Views', '2-4 Page Views', '1 Page View', 'All'];
 
   // Create SVG Element
@@ -47,7 +47,24 @@ $(document).ready(function() {
     })
     .attr('height', yScale.rangeBand())
     .attr('fill', function(d, i) {
-      return colors[i];
+      return 'rgb(' + colors[i] + ')';
+    });
+
+  // Mouse Events
+  svg.selectAll('rect')
+    .on('mouseover', function(d, i) {
+      d3.select(this)
+        .attr('fill', function(d) {
+          var index = dataset.indexOf(d);
+          return 'rgba(' + colors[index] + ', 0.4)';
+        });
+    })
+    .on('mouseout', function(d, i) {
+      d3.select(this)
+        .attr('fill', function(d, i) {
+          var index = dataset.indexOf(d);
+          return 'rgb(' + colors[index] + ')';
+        });
     });
 
   // Create yAxis Labels
@@ -59,14 +76,14 @@ $(document).ready(function() {
     .text(function(d, i) {
       return categories[i];
     })
-    .attr("x", 80 + viewPadding)
+    .attr("x", 90 + viewPadding)
     .attr("y", function(d, i) {
       return yScale(i) + (lineHeight / 2) + (yScale.rangeBand() / 2);
     })
     .attr("font-family", "sans-serif")
     .attr("font-size", "12px")
     .attr("fill", "black")
-    .style("text-anchor","end");
+    .style("text-anchor", "end");
 
   // Create Bar Labels
   svg.selectAll(".bar-label")
@@ -87,5 +104,7 @@ $(document).ready(function() {
     .attr("font-size", "12px")
     .attr("font-weight", 600)
     .attr("fill", "black");
+
+  // View Buttons
 
 });
