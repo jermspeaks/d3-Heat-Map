@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+  // d3.js Heat Map
+  // Jeremy Wong
+
   /* =======================================
       Attributes
      ======================================= */
@@ -18,7 +21,7 @@ $(document).ready(function() {
 
   // Element Widths
   var yAxisLabelWidth = 100;
-  var viewButtonWidth = 100;
+  var viewButtonWidth = 75;
 
   // Start Position for Bars
   var startBars = viewButtonWidth + yAxisLabelWidth;
@@ -131,7 +134,7 @@ $(document).ready(function() {
   };
 
   /* =======================================
-      Chart Generation
+      Chart Generation Functions
      ======================================= */
 
   function createChart() {
@@ -139,6 +142,7 @@ $(document).ready(function() {
     createBarEvents();
     createYAxisLabels();
     createBarLabels();
+    createViewButtons();
   }
 
   // Create Bars
@@ -148,7 +152,7 @@ $(document).ready(function() {
       .enter()
       .append('rect')
       .classed('bar', true)
-      .attr('x', 100 + yAxisLabelWidth)
+      .attr('x', viewButtonWidth + yAxisLabelWidth)
       .attr('y', function(d, i) {
         return yScale(i);
       })
@@ -204,5 +208,38 @@ $(document).ready(function() {
   }
 
   // View Buttons
+  function createViewButtons() {
+    svg.selectAll(".view-button")
+      .data(dataset)
+      .enter()
+      .append("rect")
+      .classed('view-button', true)
+      .attr("x", 5)
+      .attr("y", function(d, i) {
+        return yScale(i);
+      })
+      .attr("width", 60)
+      .attr("height", yScale.rangeBand())
+      .attr("rx", 5)
+      .attr("ry", 5)
+      .attr("fill", function(d) {
+        return 'rgb(' + colors[2] + ')';
+      });
+
+    svg.selectAll(".view-text")
+      .data(dataset)
+      .enter()
+      .append("text")
+      .classed('view-text', true)
+      .text('View')
+      .attr("x", 5)
+      .attr("y", function(d, i) {
+        return yScale(i) + (lineHeight / 2) + (yScale.rangeBand() / 2);
+      })
+      .attr("font-family", "sans-serif")
+      .attr("font-size", "12px")
+      .attr("fill", "white");
+  }
+
 
 });

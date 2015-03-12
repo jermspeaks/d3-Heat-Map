@@ -55,6 +55,22 @@ textarea {
    d3 styles
    ========================================================================== */
 
+.view-button {
+    width: 60px;
+    height: 25px;
+    border-radius: 10px;
+    background: rgb(246,142,53);
+    text-align: center;
+}
+
+.view-button span {
+    line-height: 25px; 
+    display: inline-block; 
+    vertical-align: middle; 
+    color: white;
+    font-size: 10pt;
+}
+
 .container {
     width: 80%;
     margin: 50px auto;
