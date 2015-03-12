@@ -65,6 +65,29 @@ $(document).ready(function() {
   // Create Chart
   createChart();
 
+  /* =======================================
+      Event Handlers
+     ======================================= */
+
+  // Mouse Events
+  function createBarEvents() {
+    svg.selectAll('rect')
+      .on('mouseover', function(d, i) {
+        d3.select(this)
+          .attr('fill', function(d) {
+            var index = dataset.indexOf(d);
+            return 'rgba(' + colors[index] + ', 0.4)';
+          });
+      })
+      .on('mouseout', function(d, i) {
+        d3.select(this)
+          .attr('fill', function(d, i) {
+            var index = dataset.indexOf(d);
+            return 'rgb(' + colors[index] + ')';
+          });
+      });
+  }
+
   // On Window Resize
   window.onresize = function(event) {
     // Update Width
@@ -107,6 +130,10 @@ $(document).ready(function() {
       });
   };
 
+  /* =======================================
+      Chart Generation
+     ======================================= */
+
   function createChart() {
     createBars();
     createBarEvents();
@@ -131,25 +158,6 @@ $(document).ready(function() {
       .attr('height', yScale.rangeBand())
       .attr('fill', function(d, i) {
         return 'rgb(' + colors[i] + ')';
-      });
-  }
-
-  // Mouse Events
-  function createBarEvents() {
-    svg.selectAll('rect')
-      .on('mouseover', function(d, i) {
-        d3.select(this)
-          .attr('fill', function(d) {
-            var index = dataset.indexOf(d);
-            return 'rgba(' + colors[index] + ', 0.4)';
-          });
-      })
-      .on('mouseout', function(d, i) {
-        d3.select(this)
-          .attr('fill', function(d, i) {
-            var index = dataset.indexOf(d);
-            return 'rgb(' + colors[index] + ')';
-          });
       });
   }
 
